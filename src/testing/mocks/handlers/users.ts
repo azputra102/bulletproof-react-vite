@@ -56,7 +56,7 @@ export const usersHandlers = [
   // Update user
   http.patch('/users/:id', async ({ params, request }) => {
     const { id } = params;
-    const data = await request.json();
+    const data = await request.json() as Record<string, unknown>;
     
     return HttpResponse.json({
       id: String(id),

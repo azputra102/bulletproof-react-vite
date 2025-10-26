@@ -28,7 +28,7 @@ export const authHandlers = [
 
   // Register
   http.post('/auth/register', async ({ request }) => {
-    const { email, password, name } = await request.json() as { 
+    const { email, name } = await request.json() as { 
       email: string; 
       password: string; 
       name: string; 
@@ -92,7 +92,7 @@ export const authHandlers = [
 
   // Reset password
   http.post('/auth/reset-password', async ({ request }) => {
-    const { token, password } = await request.json() as { 
+    const { token } = await request.json() as { 
       token: string; 
       password: string; 
     };
@@ -135,7 +135,7 @@ export const authHandlers = [
 
   // Change password
   http.patch('/auth/change-password', async ({ request }) => {
-    const { currentPassword, newPassword } = await request.json() as { 
+    const { currentPassword } = await request.json() as { 
       currentPassword: string; 
       newPassword: string; 
     };

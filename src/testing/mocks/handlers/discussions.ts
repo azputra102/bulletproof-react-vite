@@ -70,18 +70,22 @@ export const discussionsHandlers = [
 
   // Create discussion
   http.post('/discussions', async ({ request }) => {
-    const data = await request.json();
+    const data = await request.json() as {
+      title?: string;
+      content?: string;
+      tags?: string[];
+    };
     
     return HttpResponse.json({
       id: '999',
-      title: (data as any).title,
-      content: (data as any).content,
+      title: data.title,
+      content: data.content,
       author: {
         id: '1',
         name: 'Test User',
         avatar: 'https://avatars.githubusercontent.com/u/1?v=4',
       },
-      tags: (data as any).tags || [],
+      tags: data.tags || [],
       likes: 0,
       comments: 0,
       isLiked: false,
@@ -93,18 +97,22 @@ export const discussionsHandlers = [
   // Update discussion
   http.patch('/discussions/:id', async ({ params, request }) => {
     const { id } = params;
-    const data = await request.json();
+    const data = await request.json() as {
+      title?: string;
+      content?: string;
+      tags?: string[];
+    };
     
     return HttpResponse.json({
       id: String(id),
-      title: (data as any).title || `Discussion ${id}`,
-      content: (data as any).content || `Updated content for discussion ${id}`,
+      title: data.title || `Discussion ${id}`,
+      content: data.content || `Updated content for discussion ${id}`,
       author: {
         id: '1',
         name: 'Test User',
         avatar: 'https://avatars.githubusercontent.com/u/1?v=4',
       },
-      tags: (data as any).tags || ['technology', 'development'],
+      tags: data.tags || ['technology', 'development'],
       likes: 42,
       comments: 15,
       isLiked: false,

@@ -12,10 +12,6 @@ interface RegisterCredentials {
   name: string;
 }
 
-const getUser = async () => {
-  return await apiClient.get('/auth/me');
-};
-
 const logout = async () => {
   return await apiClient.post('/auth/logout');
 };
@@ -46,13 +42,33 @@ const authConfig = {
     };
   },
   loginFn: async (data: LoginCredentials) => {
-    const response = await loginWithEmailAndPassword(data);
+    const response = await loginWithEmailAndPassword(data) as unknown as {
+      user: {
+        id: string;
+        email: string;
+        name: string;
+        avatar: string;
+        role: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
     // Store login state in localStorage
     localStorage.setItem('is-logged-in', 'true');
     return response.user;
   },
   registerFn: async (data: RegisterCredentials) => {
-    const response = await registerWithEmailAndPassword(data);
+    const response = await registerWithEmailAndPassword(data) as unknown as {
+      user: {
+        id: string;
+        email: string;
+        name: string;
+        avatar: string;
+        role: string;
+        createdAt: string;
+        updatedAt: string;
+      };
+    };
     // Store login state in localStorage
     localStorage.setItem('is-logged-in', 'true');
     return response.user;
