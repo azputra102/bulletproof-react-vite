@@ -71,25 +71,64 @@ pnpm dev
 src/
 ├── app/                    # Application layer
 │   ├── routes/            # Route components
+│   │   ├── app/          # Protected app routes
+│   │   │   ├── dashboard.tsx
+│   │   │   ├── profile.tsx
+│   │   │   ├── users.tsx
+│   │   │   └── discussions/
+│   │   ├── auth/         # Auth routes (login, register)
+│   │   ├── landing.tsx
+│   │   └── not-found.tsx
 │   ├── provider.tsx       # App providers
-│   └── router.tsx         # Router configuration
+│   ├── router.tsx         # Router configuration
+│   └── router-utils.ts    # Router utilities
 ├── components/            # Shared components
-│   ├── ui/               # Reusable UI components
+│   ├── ui/               # Reusable UI components (shadcn/ui)
+│   │   ├── button/       # Button component
+│   │   ├── input/        # Input component
+│   │   ├── label/        # Label component
+│   │   ├── card/         # Card component
+│   │   ├── badge/        # Badge component
+│   │   ├── dialog/       # Dialog component
+│   │   ├── switch/       # Switch component
+│   │   ├── spinner/      # Spinner component
+│   │   └── notifications/ # Toast notifications
 │   ├── layouts/          # Layout components
-│   └── errors/           # Error components
+│   ├── errors/           # Error components
+│   └── seo/              # SEO components (Head)
 ├── features/             # Feature-based modules
 │   ├── auth/            # Authentication feature
+│   │   ├── api/         # Auth API calls
+│   │   ├── components/  # Auth components
+│   │   └── hooks/       # Auth hooks
 │   ├── discussions/     # Discussions feature
-│   └── users/           # Users feature
+│   │   ├── api/         # Discussions API calls
+│   │   ├── components/  # Discussion components
+│   │   └── hooks/       # Discussion hooks
+│   ├── users/           # Users feature
+│   │   ├── api/         # Users API calls
+│   │   ├── components/  # User components
+│   │   └── hooks/       # User hooks
+│   ├── comments/        # Comments feature (stub)
+│   └── teams/           # Teams feature (stub)
 ├── lib/                 # Reusable libraries
-│   ├── api-client.ts    # API client configuration
-│   ├── auth.tsx         # Authentication logic
+│   ├── api-client.ts    # Axios client configuration
+│   ├── auth.tsx         # Authentication logic (react-query-auth)
+│   ├── protected-route.tsx # Protected route wrapper
 │   └── react-query.ts   # React Query configuration
 ├── config/              # Configuration files
+│   ├── env.ts           # Environment variables
+│   └── paths.ts         # Route paths configuration
 ├── hooks/               # Custom hooks
 ├── types/               # TypeScript type definitions
 ├── utils/               # Utility functions
+│   ├── cn.ts            # Class name utility (clsx + tailwind-merge)
+│   └── format.ts        # Formatting utilities
 └── testing/             # Test utilities and mocks
+    ├── mocks/           # MSW mock handlers
+    │   └── handlers/    # API mock handlers
+    ├── test-utils.tsx   # Testing utilities
+    └── setup-tests.ts   # Test setup
 ```
 
 ## Available Scripts
